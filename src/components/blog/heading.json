@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blog_headings",
+  "info": {
+    "displayName": "Heading",
+    "description": "A heading block for blog content sections"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": ["h2", "h3", "h4"],
+      "default": "h2"
+    },
+    "anchorId": {
+      "type": "string"
+    }
+  }
+}

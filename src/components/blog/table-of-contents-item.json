@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blog_table_of_contents_items",
+  "info": {
+    "displayName": "Table Of Contents Item",
+    "description": "A single table of contents item for blog navigation"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "anchorId": {
+      "type": "string",
+      "required": true
+    },
+    "level": {
+      "type": "integer",
+      "default": 2,
+      "min": 1
+    }
+  }
+}
+
