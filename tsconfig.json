@@ -32,7 +32,6 @@
     "dist/",
     ".cache/",
     ".tmp/",
-    ".strapi/",
 
     // Do not include admin files in the server compilation
     "src/admin/",

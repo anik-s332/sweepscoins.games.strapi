@@ -1,115 +1,75 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
-export interface BlogHeading extends Struct.ComponentSchema {
-  collectionName: 'components_blog_headings';
+export interface SharedMedia extends Struct.ComponentSchema {
+  collectionName: 'components_shared_media';
   info: {
-    description: 'A heading block for blog content sections';
-    displayName: 'Heading';
+    displayName: 'Media';
+    icon: 'file-video';
   };
   attributes: {
-    anchorId: Schema.Attribute.String;
-    level: Schema.Attribute.Enumeration<['h2', 'h3', 'h4']> &
-      Schema.Attribute.DefaultTo<'h2'>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
   };
 }
 
-export interface BlogImage extends Struct.ComponentSchema {
-  collectionName: 'components_blog_images';
+export interface SharedQuote extends Struct.ComponentSchema {
+  collectionName: 'components_shared_quotes';
   info: {
-    description: 'A content image block with caption and alt text';
-    displayName: 'Image';
+    displayName: 'Quote';
+    icon: 'indent';
   };
   attributes: {
-    altText: Schema.Attribute.String;
-    caption: Schema.Attribute.String;
-    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-  };
-}
-
-export interface BlogList extends Struct.ComponentSchema {
-  collectionName: 'components_blog_lists';
-  info: {
-    description: 'A reusable list block for blog content';
-    displayName: 'List';
-  };
-  attributes: {
-    items: Schema.Attribute.Component<'blog.list-item', true>;
-    style: Schema.Attribute.Enumeration<['bullet', 'numbered', 'checklist']> &
-      Schema.Attribute.DefaultTo<'bullet'>;
+    body: Schema.Attribute.Text;
     title: Schema.Attribute.String;
   };
 }
 
-export interface BlogListItem extends Struct.ComponentSchema {
-  collectionName: 'components_blog_list_items';
+export interface SharedRichText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_rich_texts';
   info: {
-    description: 'A single list item in a blog list section';
-    displayName: 'List Item';
+    description: '';
+    displayName: 'Rich text';
+    icon: 'align-justify';
   };
   attributes: {
-    text: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
-export interface BlogParagraph extends Struct.ComponentSchema {
-  collectionName: 'components_blog_paragraphs';
-  info: {
-    description: 'A rich text paragraph block';
-    displayName: 'Paragraph';
-  };
-  attributes: {
-    body: Schema.Attribute.RichText & Schema.Attribute.Required;
-  };
-}
-
-export interface BlogTableOfContentsItem extends Struct.ComponentSchema {
-  collectionName: 'components_blog_table_of_contents_items';
-  info: {
-    description: 'A single table of contents item for blog navigation';
-    displayName: 'Table Of Contents Item';
-  };
-  attributes: {
-    anchorId: Schema.Attribute.String & Schema.Attribute.Required;
-    level: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 1;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<2>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
+    body: Schema.Attribute.RichText;
   };
 }
 
 export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
-    description: 'Reusable SEO metadata';
-    displayName: 'SEO';
+    description: '';
+    displayName: 'Seo';
+    icon: 'allergies';
+    name: 'Seo';
   };
   attributes: {
-    canonicalURL: Schema.Attribute.String;
-    metaDescription: Schema.Attribute.Text;
-    metaKeywords: Schema.Attribute.Text;
-    metaTitle: Schema.Attribute.String;
-    noFollow: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    noIndex: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    ogImage: Schema.Attribute.Media<'images'>;
+    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    shareImage: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface SharedSlider extends Struct.ComponentSchema {
+  collectionName: 'components_shared_sliders';
+  info: {
+    description: '';
+    displayName: 'Slider';
+    icon: 'address-book';
+  };
+  attributes: {
+    files: Schema.Attribute.Media<'images', true>;
   };
 }
 
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
-      'blog.heading': BlogHeading;
-      'blog.image': BlogImage;
-      'blog.list': BlogList;
-      'blog.list-item': BlogListItem;
-      'blog.paragraph': BlogParagraph;
-      'blog.table-of-contents-item': BlogTableOfContentsItem;
+      'shared.media': SharedMedia;
+      'shared.quote': SharedQuote;
+      'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
+      'shared.slider': SharedSlider;
     }
   }
 }

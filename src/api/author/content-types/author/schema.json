@@ -5,37 +5,33 @@
     "singularName": "author",
     "pluralName": "authors",
     "displayName": "Author",
-    "description": "Blog author profile"
+    "description": "Create authors for your content"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
+  "pluginOptions": {},
   "attributes": {
     "name": {
-      "type": "string",
-      "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
-      "required": true,
-      "unique": true
-    },
-    "designation": {
       "type": "string"
-    },
-    "bio": {
-      "type": "text"
     },
     "avatar": {
       "type": "media",
       "multiple": false,
-      "allowedTypes": ["images"]
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
     },
-    "blogs": {
+    "email": {
+      "type": "string"
+    },
+    "articles": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::blog.blog",
+      "target": "api::article.article",
       "mappedBy": "author"
     }
   }
